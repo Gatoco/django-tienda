@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Mi Tienda</title>
 </head>
 <body>
+    <nav class="navbar bg-body-tertiary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'miTienda' %}">Mi tienda 🐍</a>
+        </div>
+    </nav>
     <div class="container">
         <div class="alert alert-info display-1 text-center my-5">Mi tienda 🐍</div>
         <div class="row">
@@ -29,6 +34,9 @@
             </div>
         </div>
     </div>
+    <footer class="text-center text-secondary my-5">
+        <p class="mb-0">Mi tienda 🐍 — proyecto Django</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

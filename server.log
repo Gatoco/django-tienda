@@ -1,0 +1,24 @@
+Watching for file changes with StatReloader
+[07/Sep/2026 02:29:10] "GET / HTTP/1.1" 200 1411
+[07/Sep/2026 02:29:13] "GET / HTTP/1.1" 200 1411
+[07/Sep/2026 02:29:22] "GET /electronica/ HTTP/1.1" 200 2706
+[07/Sep/2026 02:29:22] "GET /static/css/bootstrap.min.css HTTP/1.1" 200 232111
+[07/Sep/2026 02:29:26] "GET / HTTP/1.1" 200 1411
+[07/Sep/2026 02:29:27] "GET /jugueteria/ HTTP/1.1" 200 2685
+[07/Sep/2026 02:29:34] "GET / HTTP/1.1" 200 1411
+[07/Sep/2026 02:29:35] "GET /ropa/ HTTP/1.1" 200 2676
+/tmp/opencode/django-tienda/ejercicioProyecto/ejercicioApp/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+September 07, 2026 - 02:29:02
+Django version 6.1.1, using settings 'ejercicioProyecto.settings'
+Starting WSGI development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.1/howto/deployment/
+Watching for file changes with StatReloader
