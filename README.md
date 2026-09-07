@@ -63,6 +63,64 @@ ejercicioProyecto/
 - **`urls.py`** — define las rutas, incluida `producto/<int:id_producto>/` para el detalle.
 - **Templates** — usan el mini-lenguaje de Django (`{% url %}`, `{% for %}`, `{% if %}`) para pintar los datos.
 
+## ⚙️ Configuración
+
+Este proyecto está pensado como plantilla base. Para **adaptar el contenido a otro contexto** (por ejemplo, cambiar la tienda por una cartelera de cine) solo hay que tocar 3 lugares, siempre en el mismo orden:
+
+### 1. Las secciones y productos → `ejercicioApp/views.py`
+
+Cada vista de sección tiene su propio diccionario `data`. Ahí se cambian:
+
+- El **nombre de la vista** (`electronica` → `accion`) y su `seccion` (el texto que aparece en el título).
+- Los **productos** de la lista: `nombre`, `descripcion`, `precio`, `imagen` (de cada dict).
+- El **nombre del archivo de template** si cambia (ej: `tienda.html` → `cartelera.html`).
+
+> Importante: los `id` de los productos deben ser únicos en todo el proyecto, porque `detalleProducto` busca por `id`.
+
+### 2. Las rutas → `ejercicioProyecto/urls.py`
+
+Cada vista nueva se importa y se registra con su ruta y su `name=`:
+
+```python
+from ejercicioApp.views import *
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', miCartelera, name='miCartelera'),      # ← vista de inicio
+    path('accion/', accion, name='accion'),          # ← una por sección
+    path('comedia/', comedia, name='comedia'),
+    path('drama/', drama, name='drama'),
+    path('producto/<int:id_producto>/', detalleProducto, name='detalle'),
+]
+```
+
+El `name=` de cada ruta se usa después en las templates con `{% url 'name' %}`. Si se renombra una ruta, hay que renombrarlo en las templates también.
+
+### 3. Los textos y enlaces → `templates/ejercicioApp/`
+
+En `tienda.html` (el índice):
+
+- El **título** (`Mi tienda 🐍`) y el texto del header (`Secciones de la tienda`).
+- Los **botones** de las secciones: cada uno apunta con `{% url 'electronica' %}` al name de su ruta. Si cambian las secciones, cambian el `{% url %}` y el texto del botón.
+
+En `seccion.html` y `detalle.html`:
+
+- El título `{{seccion}}` se llena solo desde la vista, no hay que tocarlo.
+- El botón **"Ver detalles"** usa `{% url 'detalle' producto.id %}` — funciona igual para cualquier contexto.
+- El botón **"Volver"** de `detalle.html` apunta a la primera sección (`{% url 'electronica' %}`) — se cambia por la sección que corresponda al nuevo contexto.
+
+### Resumen rápido
+
+| Qué cambia | Dónde |
+|---|---|
+| Nombre de vistas, `seccion` y productos | `views.py` |
+| Rutas y `name=` | `urls.py` |
+| Título, botones y textos | `tienda.html` |
+| `{% url %}` de "Volver" en el detalle | `detalle.html` |
+| Nombre de las templates | carpeta `templates/ejercicioApp/` (y las rutas en `views.py`) |
+
+Con eso basta: el resto del proyecto (configuración, estáticos, detalle) es genérico y no cambia.
+
 ## 🛠️ Stack
 
 - Python 3
